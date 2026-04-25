@@ -1,19 +1,12 @@
 // App.js
 import React, { useState, useEffect } from 'react';
-import './App.css';
+import './app.css';
 
 const App = () => {
-  const [tasks, setTasks] = useState(() => {
-    const saved = localStorage.getItem('deadline-tasks');
-    return saved ? JSON.parse(saved) : [];
-  });
+  const [tasks, setTasks] = useState([]);
   const [filter, setFilter] = useState('all');
   const [newTask, setNewTask] = useState({ name: '', deadline: '' });
   const [currentDate, setCurrentDate] = useState(new Date());
-
-  useEffect(() => {
-    localStorage.setItem('deadline-tasks', JSON.stringify(tasks));
-  }, [tasks]);
 
   useEffect(() => {
     const timer = setInterval(() => setCurrentDate(new Date()), 60000);
